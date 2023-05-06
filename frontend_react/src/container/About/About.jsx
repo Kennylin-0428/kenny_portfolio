@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion';
 
-import { images } from '../../contsants';
 import './About.scss';
+import { urlFor, client } from '../../client';
 
-const abouts = [
-  { title: 'Backend Development', description: 'I am a good backend developer.', imgUrl: images.about01 },
-  { title: 'Frontend Development', description: 'I am a good frontend developer.', imgUrl: images.about02 },
-  { title: 'SRE ', description: 'Working on becoming a sre engineer.', imgUrl: images.about03 }
-];
 
 const About = () => {
+  const [abouts, setAbouts] = useState([]);
+
+  const fetchAbouts = async () => {
+    const query = '*[_type == "abouts"]';
+    setAbouts(await client.fetch(query));
+  }
+  
+  useEffect(() => {
+    fetchAbouts();
+  }, []);
+
   return (
     <>
     <h2 className='head-text'>
@@ -26,7 +32,7 @@ const About = () => {
           className='app__profile-item'
           key={about.title + index}
           >
-            <img src={about.imgUrl} alt={about.title}/>
+            <img src={urlFor(about.imgUrl)} alt={about.title} />
             <h2 className='bold-text' style={{ marginTop: 20 }}>{about.title}</h2>
             <p className='p-text' style={{ marginTop: 10 }}>{about.description}</p>
 
