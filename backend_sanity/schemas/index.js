@@ -1,4 +1,4 @@
-import testimonials from "./testimomials"
+import testimonials from "./testimonials"
 import abouts from './abouts'
 
 import works from './works'
