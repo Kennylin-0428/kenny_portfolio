@@ -1,4 +1,4 @@
-# kenny_portfolio
+# Portfolio
 This is my persional portfolio page 
 
 ## Instructions
